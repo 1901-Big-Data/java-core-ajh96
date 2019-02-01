@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,9 +31,13 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
+		String acro = new String();
+		for (String nym : phrase.split("[ -]")) {
+			acro += nym.charAt(0);
+			}
+		acro = acro.toUpperCase();
+		return acro;
+		}
 
 	/**
 	 * 3. Determine if a triangle is equilateral, isosceles, or scalene. An
@@ -47,6 +52,7 @@ public class EvaluationService {
 		private double sideOne;
 		private double sideTwo;
 		private double sideThree;
+		private boolean bool = false;
 
 		public Triangle() {
 			super();
@@ -84,22 +90,34 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if (sideOne == sideTwo && sideTwo == sideThree && sideOne == sideThree) {
+				bool = true;
+			} else {
+				bool = false;
+			}
+			return bool;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if (sideOne == sideTwo || sideTwo == sideThree || sideOne == sideThree) {
+				bool = true;
+			} else {
+				bool = false;
+			}
+			return bool;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if (sideOne != sideTwo && sideTwo != sideThree && sideOne != sideThree) {
+				bool = true;
+			} else {
+				bool = false;
+			}
+			return bool;
 		}
 
 	}
-
+	
 	/**
 	 * 4. Given a word, compute the scrabble score for that word.
 	 * 
@@ -116,8 +134,64 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		String word = string.toLowerCase();
+		int score = 0;
+		for (int words = 0; words < word.length(); words++) {
+			if (word.charAt(words) == 'a') {
+				score = score + 1;
+			} else if (word.charAt(words) == 'b') {
+				score = score + 3;
+			} else if (word.charAt(words) == 'c') {
+				score = score + 3;
+			} else if (word.charAt(words) == 'd') {
+				score = score + 2;
+			} else if (word.charAt(words) == 'e') {
+				score = score + 1;
+			} else if (word.charAt(words) == 'f') {
+				score = score + 4;
+			} else if (word.charAt(words) == 'g') {
+				score = score + 2;
+			} else if (word.charAt(words) == 'h') {
+				score = score + 4;
+			} else if (word.charAt(words) == 'i') {
+				score = score + 1;
+			} else if (word.charAt(words) == 'j') {
+				score = score + 8;
+			} else if (word.charAt(words) == 'k') {
+				score = score + 5;
+			} else if (word.charAt(words) == 'l') {
+				score = score + 1;
+			} else if (word.charAt(words) == 'm') {
+				score = score + 3;
+			} else if (word.charAt(words) == 'n') {
+				score = score + 1;
+			} else if (word.charAt(words) == 'o') {
+				score = score + 1;
+			} else if (word.charAt(words) == 'p') {
+				score = score + 3;
+			} else if (word.charAt(words) == 'q') {
+				score = score + 10;
+			} else if (word.charAt(words) == 'r') {
+				score = score + 1;
+			} else if (word.charAt(words) == 's') {
+				score = score + 1;
+			} else if (word.charAt(words) == 't') {
+				score = score + 1;
+			} else if (word.charAt(words) == 'u') {
+				score = score + 1;
+			} else if (word.charAt(words) == 'v') {
+				score = score + 4;
+			} else if (word.charAt(words) == 'w') {
+				score = score + 4;
+			} else if (word.charAt(words) == 'x') {
+				score = score + 8;
+			} else if (word.charAt(words) == 'y') {
+				score = score + 4;
+			} else if (word.charAt(words) == 'z') {
+				score = score + 10;
+			}
+		}
+		return score;
 	}
 
 	/**
@@ -152,8 +226,9 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String z = string.replaceAll("-", "");
+		System.out.println(z);
+		return z;
 	}
 
 	/**
@@ -166,8 +241,16 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String[] word = string.split("[ -]");
+		HashMap<String, Integer> count = new HashMap<String, Integer>();
+		for (String c : word) {
+			if (count.containsKey(c)) {
+				count.put(c, count.get(c) + 1);
+			} else {
+				count.put(c, 1);
+			}
+		}
+		return count;
 	}
 
 	/**
