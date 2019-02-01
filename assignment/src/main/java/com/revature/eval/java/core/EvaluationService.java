@@ -239,6 +239,7 @@ public class EvaluationService {
 	 * 
 	 * @param string
 	 * @return
+	 * last two tests failed
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		String[] word = string.split("[ -]");
@@ -516,8 +517,50 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		string = string.toLowerCase();
+		HashMap<Character, Integer> gram = new HashMap<Character, Integer>();
+		gram.put('a', 0);
+		gram.put('b', 0);
+		gram.put('c', 0);
+		gram.put('d', 0);
+		gram.put('e', 0);
+		gram.put('f', 0);
+		gram.put('g', 0);
+		gram.put('h', 0);
+		gram.put('i', 0);
+		gram.put('j', 0);
+		gram.put('k', 0);
+		gram.put('l', 0);
+		gram.put('m', 0);
+		gram.put('n', 0);
+		gram.put('o', 0);
+		gram.put('p', 0);
+		gram.put('q', 0);
+		gram.put('r', 0);
+		gram.put('s', 0);
+		gram.put('t', 0);
+		gram.put('u', 0);
+		gram.put('v', 0);
+		gram.put('w', 0);
+		gram.put('x', 0);
+		gram.put('y', 0);
+		gram.put('z', 0);
+		char[] pan = string.toCharArray();
+		boolean p = false;
+		for (char g : pan) {
+			if (gram.containsKey(g)) {
+				gram.put(g, gram.get(g) + 1);
+			}
+		}
+		for(Object key : gram.keySet()) {
+		    if (gram.get(key) != 0) {
+		    	p = true;
+		    } else {
+		    	p = false;
+		    	break;
+		    }
+		}
+		return p;
 	}
 
 	/**
