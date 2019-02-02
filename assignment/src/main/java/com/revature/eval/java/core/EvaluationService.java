@@ -1,11 +1,10 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class EvaluationService {
 
@@ -228,10 +227,56 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		StringBuilder num = new StringBuilder(string);
-		Pattern p = Pattern.compile("[2-9]");
-		Matcher m = p.matcher(num);
-		System.out.println(num);
+		char[] num = {'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f'};
+		int count = 0;
+		try {
+			for (int a = 0; a < string.length(); a++) {
+				if (string.charAt(a) == '1') {
+					num[count] = string.charAt(a);
+					count++;
+				} else if (string.charAt(a) == '2') {
+					num[count] = string.charAt(a);
+					count++;
+				} else if (string.charAt(a) == '3') {
+					num[count] = string.charAt(a);
+					count++;
+				} else if (string.charAt(a) == '4') {
+					num[count] = string.charAt(a);
+					count++;
+				} else if (string.charAt(a) == '5') {
+					num[count] = string.charAt(a);
+					count++;
+				} else if (string.charAt(a) == '6') {
+					num[count] = string.charAt(a);
+					count++;
+				} else if (string.charAt(a) == '7') {
+					num[count] = string.charAt(a);
+					count++;
+				} else if (string.charAt(a) == '8') {
+					num[count] = string.charAt(a);
+					count++;
+				} else if (string.charAt(a) == '9') {
+					num[count] = string.charAt(a);
+					count++;
+				} else if (string.charAt(a) == '0') {
+					num[count] = string.charAt(a);
+					count++;
+				}
+				if (num[0] == '1') {
+					num[0] = num[1];
+					count--;
+				}
+				if (count == 10) {
+					count = 0;
+				}
+			}
+			if (count != 0) {
+				throw new IllegalArgumentException("Input is invalid.");
+			}
+		} catch (IllegalArgumentException e) {
+			System.out.println(e);
+			throw e;
+		}
 		return new String(num);
 	}
 
@@ -391,8 +436,25 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		List<Long> factors = new ArrayList<>();
+		long k = l;
+		int t = 0;
+		while (k % 2 == 0) {
+			factors.add(t, 2L);
+			k /= 2;
+			t++;
+		}
+		k = l;
+		for (Long r = 3L; r <= l; r += 2) {
+			while (k % r == 0) {
+				factors.add(t, r);
+				k /= r;
+				t++;
+			}
+		}
+		System.out.println(factors);
+		System.out.println(t);
+		return factors;
 	}
 
 	/**
@@ -449,8 +511,30 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int a = 2;
+		int prime = 0;
+		try {
+			if (i < 1) {
+				throw new IllegalArgumentException("0 or any negative integer is not a valid input.");
+			}
+			if (i == 1) {
+				prime = 2;
+			}
+			if (i == 2) {
+				prime = 3;
+			}
+			for (int x = 5; a < i; x++) {
+                if ((x * x - 1) % 24 == 0) {
+					prime = x;
+					a++;
+				}
+			}
+		} catch (IllegalArgumentException e) {
+			System.out.println(e);
+			throw e;
+		}
+		System.out.println(prime);
+		return prime;
 	}
 
 	/**

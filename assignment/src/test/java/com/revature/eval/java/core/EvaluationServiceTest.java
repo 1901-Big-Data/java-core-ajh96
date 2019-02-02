@@ -159,7 +159,7 @@ public class EvaluationServiceTest {
 	@Test
 	public void cleansTheNumber() {
 		final String expectedNumber = "2234567890";
-		final String actualNumber = evaluationService.cleanPhoneNumber("(223) 456-7890");
+		final String actualNumber = evaluationService.cleanPhoneNumber(" (223) 456-7890");
 		assertEquals(expectedNumber, actualNumber);
 	}
 
