@@ -4,6 +4,8 @@ import java.time.temporal.Temporal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EvaluationService {
 
@@ -226,9 +228,11 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		String z = string.replaceAll("-", "");
-		System.out.println(z);
-		return z;
+		StringBuilder num = new StringBuilder(string);
+		Pattern p = Pattern.compile("[2-9]");
+		Matcher m = p.matcher(num);
+		System.out.println(num);
+		return new String(num);
 	}
 
 	/**
@@ -239,7 +243,7 @@ public class EvaluationService {
 	 * 
 	 * @param string
 	 * @return
-	 * last two tests failed
+	 * 
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		String[] word = string.split("[ -]");
@@ -330,8 +334,19 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		StringBuilder latin = new StringBuilder(string);
+		for (int a = 0, c = string.length(); a < c; a++) {
+			if (latin.charAt(0) != 'a' && latin.charAt(0) != 'e' && latin.charAt(0) != 'i' && 
+					latin.charAt(0) != 'o' && latin.charAt(0) != 'u') {
+				latin.deleteCharAt(0);
+				latin.insert(c - 1, string.charAt(a));
+			} else {
+				a = c + 1;
+			}
+		}
+		latin.append("ay");
+		System.out.println(latin);
+		return new String(latin);
 	}
 
 	/**
@@ -350,8 +365,19 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		String arm = new Integer(input).toString();
+		Double num = new Double(0.0);
+		int x = arm.length();
+		Double y = new Double(0.0);
+		boolean bool = false;
+		for (String strong : arm.split("")) {
+			num = Double.parseDouble(strong);
+			y += Math.pow(num, x);
+		}
+		if (y == input) {
+			bool = true;
+		}
+		return bool;
 	}
 
 	/**
