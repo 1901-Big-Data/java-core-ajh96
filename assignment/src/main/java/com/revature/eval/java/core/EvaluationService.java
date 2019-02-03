@@ -566,8 +566,60 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			string = string.toLowerCase();
+			HashMap<Character, Character> code = new HashMap<Character, Character>();
+			code.put('a', 'z');
+			code.put('b', 'y');
+			code.put('c', 'x');
+			code.put('d', 'w');
+			code.put('e', 'v');
+			code.put('f', 'u');
+			code.put('g', 't');
+			code.put('h', 's');
+			code.put('i', 'r');
+			code.put('j', 'q');
+			code.put('k', 'p');
+			code.put('l', 'o');
+			code.put('m', 'n');
+			code.put('n', 'm');
+			code.put('o', 'l');
+			code.put('p', 'k');
+			code.put('q', 'j');
+			code.put('r', 'i');
+			code.put('s', 'h');
+			code.put('t', 'g');
+			code.put('u', 'f');
+			code.put('v', 'e');
+			code.put('w', 'd');
+			code.put('x', 'c');
+			code.put('y', 'b');
+			code.put('z', 'a');
+			code.put('1', '1');
+			code.put('2', '2');
+			code.put('3', '3');
+			code.put('4', '4');
+			code.put('5', '5');
+			code.put('6', '6');
+			code.put('7', '7');
+			code.put('8', '8');
+			code.put('9', '9');
+			code.put('0', '0');
+			char[] cyp = string.toCharArray();
+			StringBuilder bash = new StringBuilder();
+			int c = 0;
+			for (char g : cyp) {
+				if (code.containsKey(g)) {
+					bash.insert(c, code.get(g));
+					c++;
+				}
+			}
+			System.out.println(bash.length());
+			for (int d = 1; d <= bash.length(); d++) {
+				if (d % 6 == 0) {
+					bash.insert(d - 1, " ");
+				}
+			}
+			return new String(bash);
 		}
 
 		/**
@@ -577,8 +629,54 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			string = string.toLowerCase();
+			HashMap<Character, Character> code = new HashMap<Character, Character>();
+			code.put('a', 'z');
+			code.put('b', 'y');
+			code.put('c', 'x');
+			code.put('d', 'w');
+			code.put('e', 'v');
+			code.put('f', 'u');
+			code.put('g', 't');
+			code.put('h', 's');
+			code.put('i', 'r');
+			code.put('j', 'q');
+			code.put('k', 'p');
+			code.put('l', 'o');
+			code.put('m', 'n');
+			code.put('n', 'm');
+			code.put('o', 'l');
+			code.put('p', 'k');
+			code.put('q', 'j');
+			code.put('r', 'i');
+			code.put('s', 'h');
+			code.put('t', 'g');
+			code.put('u', 'f');
+			code.put('v', 'e');
+			code.put('w', 'd');
+			code.put('x', 'c');
+			code.put('y', 'b');
+			code.put('z', 'a');
+			code.put('1', '1');
+			code.put('2', '2');
+			code.put('3', '3');
+			code.put('4', '4');
+			code.put('5', '5');
+			code.put('6', '6');
+			code.put('7', '7');
+			code.put('8', '8');
+			code.put('9', '9');
+			code.put('0', '0');
+			char[] cyp = string.toCharArray();
+			StringBuilder bash = new StringBuilder();
+			int c = 0;
+			for (char g : cyp) {
+				if (code.containsKey(g)) {
+					bash.insert(c, code.get(g));
+					c++;
+				}
+			}
+			return new String(bash);
 		}
 	}
 
