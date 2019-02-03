@@ -291,7 +291,8 @@ public class EvaluationService {
 	 * 
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		String[] word = string.split("[ -]");
+		string = string.replace(",\n", " ");
+		String[] word = string.split("[ -,]");
 		HashMap<String, Integer> count = new HashMap<String, Integer>();
 		for (String c : word) {
 			if (count.containsKey(c)) {
@@ -613,7 +614,6 @@ public class EvaluationService {
 					c++;
 				}
 			}
-			System.out.println(bash.length());
 			for (int d = 1; d <= bash.length(); d++) {
 				if (d % 6 == 0) {
 					bash.insert(d - 1, " ");
@@ -880,8 +880,67 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		Integer[] num = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		int count = 0;
+		boolean valid = false;
+		for (int a = 0; a < string.length(); a++) {
+			if (string.charAt(a) == '1') {
+				num[count] = 1;
+				count++;
+			} else if (string.charAt(a) == '2') {
+				num[count] = 2;
+				count++;
+			} else if (string.charAt(a) == '3') {
+				num[count] = 3;
+				count++;
+			} else if (string.charAt(a) == '4') {
+				num[count] = 4;
+				count++;
+			} else if (string.charAt(a) == '5') {
+				num[count] = 5;
+				count++;
+			} else if (string.charAt(a) == '6') {
+				num[count] = 6;
+				count++;
+			} else if (string.charAt(a) == '7') {
+				num[count] = 7;
+				count++;
+			} else if (string.charAt(a) == '8') {
+				num[count] = 8;
+				count++;
+			} else if (string.charAt(a) == '9') {
+				num[count] = 9;
+				count++;
+			} else if (string.charAt(a) == '0') {
+				num[count] = 0;
+				count++;
+			} else if (string.charAt(a) == ' ') {
+				num[count] = 0;
+			} else {
+				System.out.println("Invalid input (input contains foreign characters).");
+				return false;
+			}
+			if (num[0] == '1') {
+				num[0] = num[1];
+				count--;
+			}
+		}
+		for (int x = 15; x > 0; x -= 2) {
+			num[x] = num[x] * 2;
+			if (num[x] > 9) {
+				num[x] = num[x] - 9;
+			}
+		}
+		for (int y = 0, z = 0; y < 16; y++) {
+			z += num[y];
+			System.out.println(z);
+			if (y == 15) {
+				if (z % 10 == 0) {
+					valid = true;
+				}
+			}
+		}
+		return valid;
 	}
 
 	/**
