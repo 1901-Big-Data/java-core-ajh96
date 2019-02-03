@@ -971,8 +971,26 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		String[] problem = string.split("[ ?]");
+		int f = Integer.parseInt(problem[2]);
+		int g = 0;
+		if (problem[3].equals("plus") || problem[3].equals("minus")) {
+			g = Integer.parseInt(problem[4]);
+		} else {
+			g = Integer.parseInt(problem[5]);
+		}
+		if (problem[3].equals("plus")) {
+			return f + g;
+		} else if (problem[3].equals("minus")) {
+			return f - g;
+		} else if (problem[3].equals("multiplied")) {
+			return f * g;
+		} else if (problem[3].equals("divided")) {
+			return f / g;
+		} else {
+			System.out.println("Input has invalid operator.");
+			return 0;
+		}
 	}
 
 }
