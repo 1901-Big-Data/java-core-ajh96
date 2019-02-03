@@ -390,7 +390,6 @@ public class EvaluationService {
 			}
 		}
 		latin.append("ay");
-		System.out.println(latin);
 		return new String(latin);
 	}
 
@@ -452,8 +451,6 @@ public class EvaluationService {
 				t++;
 			}
 		}
-		System.out.println(factors);
-		System.out.println(t);
 		return factors;
 	}
 
@@ -533,7 +530,6 @@ public class EvaluationService {
 			System.out.println(e);
 			throw e;
 		}
-		System.out.println(prime);
 		return prime;
 	}
 
@@ -609,8 +605,53 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		Integer[] num = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100};
+		int count = 0;
+		boolean valid = false;
+		for (int a = 0; a < string.length(); a++) {
+			if (string.charAt(a) == '1') {
+				num[count] = 1;
+				count++;
+			} else if (string.charAt(a) == '2') {
+				num[count] = 2;
+				count++;
+			} else if (string.charAt(a) == '3') {
+				num[count] = 3;
+				count++;
+			} else if (string.charAt(a) == '4') {
+				num[count] = 4;
+				count++;
+			} else if (string.charAt(a) == '5') {
+				num[count] = 5;
+				count++;
+			} else if (string.charAt(a) == '6') {
+				num[count] = 6;
+				count++;
+			} else if (string.charAt(a) == '7') {
+				num[count] = 7;
+				count++;
+			} else if (string.charAt(a) == '8') {
+				num[count] = 8;
+				count++;
+			} else if (string.charAt(a) == '9') {
+				num[count] = 9;
+				count++;
+			} else if (string.charAt(a) == '0') {
+				num[count] = 0;
+				count++;
+			} else if (string.charAt(a) == 'X') {
+				num[count] = 10;
+				count++;
+			}
+		}
+		count = 0;
+		for (int c = 0, d = 10; c < 10; c++, d--) {
+			count += num[c] * d;
+		}
+		if (count % 11 == 0) {
+			valid = true;
+		}
+		return valid;
 	}
 
 	/**
