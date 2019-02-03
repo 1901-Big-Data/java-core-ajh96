@@ -839,8 +839,23 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		List<Integer> multiples = new ArrayList<>();
+		int sum = 0;
+		for (int a = 0, b = 0; a < set.length; a++) {
+			b = set[a];
+			while (b < i) {
+				if (multiples.contains(b)) {
+					b += set[a];
+				} else {
+					multiples.add(b);
+					b += set[a];
+				}
+			}
+		}
+		for (int d : multiples) {
+			sum += d;
+		}
+		return sum;
 	}
 
 	/**
@@ -933,7 +948,6 @@ public class EvaluationService {
 		}
 		for (int y = 0, z = 0; y < 16; y++) {
 			z += num[y];
-			System.out.println(z);
 			if (y == 15) {
 				if (z % 10 == 0) {
 					valid = true;
