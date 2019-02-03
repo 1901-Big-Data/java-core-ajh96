@@ -343,7 +343,17 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+			int mid = sortedList.size() / 2;
+			for (int lower = mid; lower >= 0; lower--) {
+				if (t.equals(sortedList.get(lower))) {
+					return lower;
+				}
+			}
+			for (int upper = mid; upper < sortedList.size(); upper++) {
+				if (t.equals(sortedList.get(upper))) {
+					return upper;
+				}
+			}
 			return 0;
 		}
 
